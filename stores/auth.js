@@ -12,7 +12,9 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null,
   }),
-  
+
+  persist: true,
+
   actions: {
     async onSigninWithEmail({ email, password }) {
       const auth = getAuth()
@@ -37,32 +39,35 @@ export const useAuthStore = defineStore('auth', {
       this.cleanUser()
     },
 
-    currentUser() {
+    async currentUser() {
       const auth = getAuth()
-      return new Promise((resolve, reject) => {
+
+      return await new Promise((resolve, reject) => {
         onAuthStateChanged(auth, (user) => {
-          if (user) {
-            console.log("user", user)
+          if (!user) {
+            reject(undefined)
+          } else {
             resolve(user)
             this.setUser(user)
-          } else {
-            console.log("no user")
-            resolve(undefined)
           }
         })
       })
     },
+
     setUser(payload) {
       this.user = payload
     },
+
     cleanUser() {
       this.user = ''
     },
   },
+
   getters: {
     userData(state) {
       return state.user
     },
+
     loggedin(state) {
       return !!state.user
     }

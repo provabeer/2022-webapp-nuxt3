@@ -1,9 +1,9 @@
 <script setup>
 useHead({
-  title: 'protected',
+  title: 'Protected',
 })
 </script>
 
 <template>
-  <div>protected page</div>
+  <h1>Protected</h1>
 </template>

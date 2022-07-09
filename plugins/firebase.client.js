@@ -18,8 +18,6 @@ export default defineNuxtPlugin(() => {
   const auth = getAuth(app)
   const db = getFirestore(app)
 
-  console.log("plugin firebase")
-
   return {
     provide: {
       firebaseApp: app,

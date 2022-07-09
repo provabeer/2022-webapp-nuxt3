@@ -7,12 +7,14 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
+    "@unocss/nuxt": "^0.43.2",
     "nuxt": "3.0.0-rc.4",
     "prettier": "^2.7.1"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.1.9",
     "firebase": "^9.8.4",
-    "pinia": "^2.0.14"
+    "pinia": "^2.0.14",
+    "pinia-plugin-persistedstate": "^1.6.1"
   }
 }
