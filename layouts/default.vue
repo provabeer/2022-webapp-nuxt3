@@ -1,9 +1,13 @@
 <script setup>
+
+console.log("default.vue")
+
 import useAuth from '@/composables/auth'
 import { useAuthStore } from '@/stores/auth'
 
 const { onClickToSignout } = useAuth()
 const store = useAuthStore()
+
 </script>
 
 <template>
@@ -28,6 +32,6 @@ const store = useAuthStore()
       </li>
     </ul>
     <slot />
-    <pre v-if="store.loggedin" class="bg-gray-300">User: {{ store.userData }}</pre>
+    <pre v-if="store.loggedin" class="bg-warm-gray-200 bottom-0 absolute left-0 w-full overflow-y-hidden">User: {{ store.userData }}</pre>
   </div>
 </template>

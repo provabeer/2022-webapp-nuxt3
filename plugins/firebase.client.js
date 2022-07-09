@@ -4,6 +4,8 @@ import { getAuth } from 'firebase/auth'
 import { getFirestore } from 'firebase/firestore'
 
 export default defineNuxtPlugin(() => {
+  console.log("firebase client")
+  
   const firebaseConfig = {
     apiKey: 'AIzaSyDJdFHLH_jGQFcBN2hS47NvXgc1tWKFUd4',
     authDomain: 'provabeer.firebaseapp.com',

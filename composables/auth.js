@@ -4,8 +4,8 @@ export default function useAuth() {
   const store = useAuthStore()
 
   const form = reactive({
-    email: '',
-    password: '',
+    email: 'b@b.com',
+    password: '123123',
   })
 
   const onClickToSignup = () => {
