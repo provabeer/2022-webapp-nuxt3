@@ -14,7 +14,6 @@
   "dependencies": {
     "@pinia/nuxt": "^0.1.9",
     "firebase": "^9.8.4",
-    "pinia": "^2.0.14",
-    "pinia-plugin-persistedstate": "^1.6.1"
+    "pinia": "^2.0.14"
   }
 }

@@ -3,6 +3,9 @@ import { useAuthStore } from "@/stores/auth"
 
 export default defineNuxtPlugin(() => {
     console.log("init client")
+
     const store = useAuthStore()
     store.currentUser()
+
+    console.log("init client end")
 })
