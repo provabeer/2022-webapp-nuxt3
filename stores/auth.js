@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
+import { useCookie } from '#app'
 
 import {
-  getAuth,
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut,
@@ -15,66 +15,66 @@ export const useAuthStore = defineStore('auth', {
   
   actions: {
     async onSigninWithEmail({ email, password }) {
-      const auth = getAuth()
+      const { $firebaseAuth } = useNuxtApp()
+      const auth = $firebaseAuth
+
       const response = await signInWithEmailAndPassword(auth, email, password)
       this.setUser(response.user)
     },
     
     async onSignupWithEmail({ email, password }) {
-      const auth = getAuth()
-      const response = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password,
-        )
-        
-        this.setUser(response.user)
-      },
-      
-      async onSignout() {
-        const auth = getAuth()
-        await signOut(auth)
-        this.cleanUser()
-      },
-      
-      async currentUser() {
-        console.log("currentUser")
-        const auth = getAuth()
+      const { $firebaseAuth } = useNuxtApp()
+      const auth = $firebaseAuth
 
-        return await new Promise(async (resolve, reject) => {
-          onAuthStateChanged(auth, (user) => {
-            if (!user) {
-              console.log("!user")
-              resolve()
-            } else {
-              console.log("user")
-              resolve(user)
-              this.setUser(user)
-            }
-            console.log("on auth state changed end")
-          })
-          console.log("end promise")
-        })
-      },
-      
-      setUser(payload) {
-        console.log("setUser")
-        this.user = payload
-      },
-      
-      cleanUser() {
-        this.user = null
-      },
+      const response = await createUserWithEmailAndPassword(auth, email, password)
+      this.setUser(response.user)
     },
     
-    getters: {
-      userData(state) {
-        return state.user
-      },
-      
-      loggedin(state) {
-        return !!state.user
-      }
+    async onSignout() {
+      const { $firebaseAuth } = useNuxtApp()
+      const auth = $firebaseAuth
+
+      await signOut(auth)
+      this.cleanUser()
     },
-  })
+    
+    async currentUser() {
+      const { $firebaseAuth } = useNuxtApp()
+      const auth = $firebaseAuth
+    
+      return await new Promise(async (resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+          if (user) {
+            resolve()
+            this.setUser(user)
+          } else {
+            reject()
+            this.cleanUser()
+          }
+        })
+      })
+    },
+    
+    setUser(payload) {
+      const userCookie = useCookie("user")
+      userCookie.value = payload
+      this.user = payload
+    },
+    
+    cleanUser() {
+      const userCookie = useCookie("user")
+      userCookie.value = null
+      this.user = null
+    },
+  },
   
+  getters: {
+    userData(state) {
+      return state.user
+    },
+    
+    loggedin(state) {
+      return !!state.user
+    }
+  },
+})

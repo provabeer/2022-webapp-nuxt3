@@ -1,7 +1,9 @@
 <script setup>
+
 import useAuth from '@/composables/auth'
 
 const { form, onClickToSignin } = useAuth()
+
 </script>
 
 <template>

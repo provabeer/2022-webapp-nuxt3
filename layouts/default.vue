@@ -1,7 +1,5 @@
 <script setup>
 
-console.log("default.vue")
-
 import useAuth from '@/composables/auth'
 import { useAuthStore } from '@/stores/auth'
 
