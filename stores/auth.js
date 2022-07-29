@@ -12,7 +12,7 @@ export const useAuthStore = defineStore('auth', {
   state: () => ({
     user: null,
   }),
-  
+
   actions: {
     async onSigninWithEmail({ email, password }) {
       const { $firebaseAuth } = useNuxtApp()
@@ -21,15 +21,19 @@ export const useAuthStore = defineStore('auth', {
       const response = await signInWithEmailAndPassword(auth, email, password)
       this.setUser(response.user)
     },
-    
+
     async onSignupWithEmail({ email, password }) {
       const { $firebaseAuth } = useNuxtApp()
       const auth = $firebaseAuth
 
-      const response = await createUserWithEmailAndPassword(auth, email, password)
+      const response = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      )
       this.setUser(response.user)
     },
-    
+
     async onSignout() {
       const { $firebaseAuth } = useNuxtApp()
       const auth = $firebaseAuth
@@ -37,12 +41,14 @@ export const useAuthStore = defineStore('auth', {
       await signOut(auth)
       this.cleanUser()
     },
-    
+
     async currentUser() {
+      console.log('current user')
+
       const { $firebaseAuth } = useNuxtApp()
       const auth = $firebaseAuth
-    
-      return await new Promise(async (resolve, reject) => {
+
+      return await new Promise((resolve, reject) => {
         onAuthStateChanged(auth, (user) => {
           if (user) {
             resolve()
@@ -54,27 +60,29 @@ export const useAuthStore = defineStore('auth', {
         })
       })
     },
-    
+
     setUser(payload) {
-      const userCookie = useCookie("user")
+      console.log('setUser')
+
+      const userCookie = useCookie('user')
       userCookie.value = payload
       this.user = payload
     },
-    
+
     cleanUser() {
-      const userCookie = useCookie("user")
+      const userCookie = useCookie('user')
       userCookie.value = null
       this.user = null
     },
   },
-  
+
   getters: {
     userData(state) {
       return state.user
     },
-    
+
     loggedin(state) {
       return !!state.user
-    }
+    },
   },
 })

@@ -1,9 +1,13 @@
 <script setup>
+definePageMeta({
+  middleware: 'avoid-loggedin',
+})
 
 useHead({
   title: 'Login',
 })
 
+console.log('pagina login')
 </script>
 
 <template>
