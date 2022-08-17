@@ -12,7 +12,7 @@ export default function useAuth() {
     store
       .onSignupWithEmail(form)
       .then(() => {
-        console.log('then')
+        navigateTo('/')
       })
       .catch((error) => {
         console.log('error')
@@ -24,7 +24,7 @@ export default function useAuth() {
     store
       .onSigninWithEmail(form)
       .then(() => {
-        console.log('then')
+        navigateTo('/')
       })
       .catch((error) => {
         console.log('error')
@@ -36,7 +36,7 @@ export default function useAuth() {
     store
       .onSignout()
       .then(() => {
-        console.log('then')
+        navigateTo('/')
       })
       .catch((error) => {
         console.log('error')

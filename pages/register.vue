@@ -1,9 +1,11 @@
 <script setup>
+definePageMeta({
+  middleware: 'avoid-loggedin',
+})
 
 useHead({
   title: 'Register',
 })
-
 </script>
 
 <template>

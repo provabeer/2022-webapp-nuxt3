@@ -1,9 +1,11 @@
 <script setup>
+definePageMeta({
+  middleware: 'avoid-loggedoff',
+})
 
 useHead({
   title: 'Protected',
 })
-
 </script>
 
 <template>

@@ -6,8 +6,6 @@ definePageMeta({
 useHead({
   title: 'Login',
 })
-
-console.log('pagina login')
 </script>
 
 <template>

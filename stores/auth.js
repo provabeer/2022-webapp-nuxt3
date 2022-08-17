@@ -43,8 +43,6 @@ export const useAuthStore = defineStore('auth', {
     },
 
     async currentUser() {
-      console.log('current user')
-
       const { $firebaseAuth } = useNuxtApp()
       const auth = $firebaseAuth
 
@@ -62,8 +60,6 @@ export const useAuthStore = defineStore('auth', {
     },
 
     setUser(payload) {
-      console.log('setUser')
-
       const userCookie = useCookie('user')
       userCookie.value = payload
       this.user = payload
