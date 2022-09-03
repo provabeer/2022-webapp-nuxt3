@@ -1,9 +1,7 @@
 <script setup>
-
 useHead({
   title: 'Index',
 })
-
 </script>
 
 <template>

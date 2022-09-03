@@ -24,7 +24,7 @@ export default function useAuth() {
     store
       .onSigninWithEmail(form)
       .then(() => {
-        navigateTo('/')
+        navigateTo(useRoute().query.redirect || '/')
       })
       .catch((error) => {
         console.log('error')

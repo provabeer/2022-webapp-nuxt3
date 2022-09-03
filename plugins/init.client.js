@@ -1,4 +1,3 @@
-import { defineNuxtPlugin } from '#app'
 import { useAuthStore } from '@/stores/auth'
 import { useCookie } from '#app'
 

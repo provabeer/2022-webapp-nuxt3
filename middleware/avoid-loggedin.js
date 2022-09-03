@@ -1,5 +1,3 @@
-import { useCookie } from '#app'
-
 export default defineNuxtRouteMiddleware((to, from) => {
   const userOnCookie = useCookie('user')
 

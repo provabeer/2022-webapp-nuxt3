@@ -1,5 +1,4 @@
 <script setup>
-import { useCookie } from '#app'
 import { useAuthStore } from '@/stores/auth'
 
 const store = useAuthStore()

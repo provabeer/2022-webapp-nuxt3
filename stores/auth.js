@@ -1,5 +1,4 @@
 import { defineStore } from 'pinia'
-import { useCookie } from '#app'
 
 import {
   signInWithEmailAndPassword,
